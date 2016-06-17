@@ -60,4 +60,3 @@ actions are mimicked for the input to yield results.
 2. Use the templates to match predicate candidates.
 3. Enumerate paths between two predicate candidates.
 4. Text and links are associated as objects of the previous predicate.
-5.
