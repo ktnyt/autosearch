@@ -9,5 +9,5 @@ class Autosearcher(object):
     def __call__(self, query, n=1):
         results, scores = self.search(query)
         n = min([n, len(results)])
-        objects = [self.parse(result) for result in results[0:n+1]]
+        objects = [self.parse(result) for result in results[0:n]]
         return objects, results

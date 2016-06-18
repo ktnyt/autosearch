@@ -14,6 +14,9 @@ class Searcher(object):
 
         # Find forms with text inputs
         for form in top.find_all('form'):
+            print form
+            if 'action' not in form.attrs:
+                continue
             form['action'] = absolutify(url, form['action'])
             for input in form.find_all('input'):
                 attrs = input.attrs
@@ -21,19 +24,15 @@ class Searcher(object):
                     forms.append(Form(form))
 
         if not len(forms):
-            return None, None
+            return
 
         # Try each form
         for form in forms:
-            try:
                 result = form(query)
                 finder = PathFinder().fromDom(result, tag='a', attr='href')
                 path, score = finder.bestPath()
                 paths.append(path)
                 scores.append(score)
-            except Exception as e:
-                print e
-                continue
 
         # Find best form
         i = argmax(scores)

@@ -36,6 +36,7 @@ def main():
     parser.add_argument('--join_text', default=False, help='Join text with space', action='store_true')
     parser.add_argument('--text_only', default=False, help='Only report texts', action='store_true')
     parser.add_argument('--link_only', default=False, help='Only report links', action='store_true')
+    parser.add_argument('--noparse', default=False, help='Do not parse results', action='store_true')
 
     parser.add_argument('--json', default=False, help='Output results in json', action='store_true')
 
@@ -45,12 +46,20 @@ def main():
         services = pickle.load(f)
 
     if args.service not in services:
-        print 'Service "{}" not availablein {}: try adding one.'.format(args.service, args.pickle)
+        print 'Service "{}" not available in {}: try adding one.'.format(args.service, args.pickle)
 
     objects, results = services[args.service](args.query)
 
     if args.json:
-        print json.dumps(objects, sort_keys=True).decode('unicode-escape').encode('utf8')
+        if args.noparse:
+            print json.dumps(results)
+        else:
+            print json.dumps(objects, sort_keys=True)
+        return
+
+    if args.noparse:
+        for result in results:
+            print result
         return
 
     for obj in objects:

@@ -17,7 +17,7 @@ class Form(object):
             if len(name) > 20:
                 continue
             if not 'value' in attrs:
-                value = None
+                value = ''
             else:
                 value = attrs['value']
             self.params[name] = value
@@ -40,6 +40,9 @@ class Form(object):
                 value = attrs['value']
                 if value is not None:
                     self.params[name] = value
+
+        for name in self.params:
+            self.params[name] = self.params[name].encode('utf-8')
 
     def __call__(self, query):
         values = self.params

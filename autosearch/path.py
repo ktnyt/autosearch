@@ -66,33 +66,33 @@ class PathFinder(object):
 
     def matchPath(self, query, string=False):
         if not string:
-            query = query.stringify()
+            query = query.shape
         matches = []
         scores = []
         for path in self.paths:
-            if path.stringify() == query:
+            if path.shape == query:
                 matches.append(path)
                 scores.append(path.score)
         return matches, scores
 
     def matchHead(self, query, string=False):
         if not string:
-            query = query.stringify()
+            query = query.shape
         matches = []
         scores = []
         for path in self.paths:
-            if path.stringify().startswith(query):
+            if path.shape.startswith(query):
                 matches.append(path)
                 scores.append(path.score)
         return matches, scores
 
     def matchTail(self, query, string=False):
         if not string:
-            query = query.stringify()
+            query = query.shape
         matches = []
         scores = []
         for path in self.paths:
-            if path.stringify().endswith(query) or query.endswith(path.stringify()):
+            if path.shape.endswith(query) or query.endswith(path.shape):
                 matches.append(path)
                 scores.append(path.score)
         return matches, scores
