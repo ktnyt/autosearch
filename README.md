@@ -16,7 +16,7 @@ Adding a service
 $ python addservice.py uniprot http://www.uniprot.org recA collagen
 
 # Example for adding Kegg Ligand
-$ python addservice.py kegg-ligand http://www.genome.jp/kegg/ligand.html glucose phsphoenolpyruvate
+$ python addservice.py kegg-ligand http://www.genome.jp/kegg/ligand.html glucose dehydrogenase
 ```
 
 Searching a database
