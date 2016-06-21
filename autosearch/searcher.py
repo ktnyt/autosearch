@@ -14,7 +14,6 @@ class Searcher(object):
 
         # Find forms with text inputs
         for form in top.find_all('form'):
-            print form
             if 'action' not in form.attrs:
                 continue
             form['action'] = absolutify(url, form['action'])
